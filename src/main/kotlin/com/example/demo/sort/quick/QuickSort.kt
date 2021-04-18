@@ -1,4 +1,4 @@
-package com.example.demo.sort
+package com.example.demo.sort.quick
 
 class QuickSort {
 
@@ -39,11 +39,11 @@ class QuickSort {
      * @n 要素数
      */
     private fun quickSort(a: IntArray, n: Int) {
-        quickSort(a, 0 , n - 1)
+        quickSort(a, 0, n - 1)
     }
 
     fun exec() {
-        val arr = intArrayOf(5,8,4,2,6,1,3,9,7)
+        val arr = intArrayOf(5, 8, 4, 2, 6, 1, 3, 9, 7)
         println("要素数： ${arr.size}")
         arr.forEachIndexed { idx, el ->
             println("インデックス： $idx 要素： $el")

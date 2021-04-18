@@ -1,4 +1,4 @@
-package com.example.demo.sort
+package com.example.demo.sort.quick
 
 import java.util.*
 
@@ -20,11 +20,11 @@ class QuickSortWithoutRecur {
         rStack.push(right)
 
         while (lStack.isNotEmpty()) {
-            var pl  = lStack.pop()
+            var pl = lStack.pop()
             left = pl
             var pr = rStack.pop()
             right = pr
-            val x = a[(left + right) / 2]
+            val x = a[(left + right).ushr(2)]
 
             while (pl <= pr) {
                 while (a[pl] < x) pl++
@@ -33,15 +33,39 @@ class QuickSortWithoutRecur {
             }
 
             // 以降のif文内に渡らない限り各スタックは空のままになり、ループが終了する
+            println("left: $left, pr: $pr, pl: $pl, right: $right")
+            // 要素数が小さい方を後にpushしたい
+            if ((pr - left) < (right - pl)) {
+                var i = left
+                left = pl
+                pl = i
+
+                i = pr
+                pr = right
+                right = i
+            }
+
             if (left < pr) {
-                lStack.push(left) // pl
-                rStack.push(pr) // pr
+                lStack.push(left)
+                rStack.push(pr)
             }
 
             if (pl < right) {
                 lStack.push(pl)
                 rStack.push(right)
             }
+        }
+    }
+
+    private fun pushLRStack() {
+
+    }
+
+    fun exec() {
+        val arr = intArrayOf(5, 8, 4, 2, 6, 1, 3, 9, 7)
+        quickSort(arr, 0, arr.lastIndex)
+        arr.forEachIndexed { idx, el ->
+            println("インデックス： $idx 要素： $el")
         }
     }
 
