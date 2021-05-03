@@ -10,12 +10,32 @@ class QuickSortWithoutRecur {
         a[idx2] = t
     }
 
+    private fun sortLeftCenterRight(a: IntArray, left: Int, center: Int, right: Int) {
+        if (center < a[left]) {
+            swap(a, left, center)
+        }
+        if (right < center) {
+            swap(a, right, center)
+        }
+        swap(a, center, right - 1)
+    }
+
+    /**
+     * 通常のクイックソートに加え、数パーセント程度の高速化を行なっている
+     */
     fun quickSort(a: IntArray, lt: Int, rt: Int) {
         var left = lt
         var right = rt
+
+        val center = a[(left + right).ushr(2)]
+        sortLeftCenterRight(a, left, center, right)
+
         val lStack = Stack<Int>() // aのインデックス範囲（中央から左端）を決める
         val rStack = Stack<Int>() // aのインデックス範囲（中央から右端）を決める
 
+        // 先頭・中央・末尾をソートしているためソート範囲が狭められた
+        left += 1
+        right -= 2
         lStack.push(left)
         rStack.push(right)
 
@@ -55,10 +75,6 @@ class QuickSortWithoutRecur {
                 rStack.push(right)
             }
         }
-    }
-
-    private fun pushLRStack() {
-
     }
 
     fun exec() {
