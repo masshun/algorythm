@@ -1,6 +1,6 @@
 package com.example.demo
 
-import com.example.demo.sort.heap.HeapSort
+import com.example.demo.sort.fSort.FSort
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -9,5 +9,5 @@ class DemoApplication
 
 fun main(args: Array<String>) {
     runApplication<DemoApplication>(*args)
-    HeapSort().execute()
+    FSort().executeFSort()
 }
