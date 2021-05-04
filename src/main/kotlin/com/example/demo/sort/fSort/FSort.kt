@@ -6,33 +6,32 @@ package com.example.demo.sort.fSort
  */
 class FSort {
     private fun fSort(a: IntArray, max: Int, min: Int = 0) {
-        val f = IntArray(max + 1) // 累積度数
+        val f = IntArray((max - min) + 2) // 累積度数
         val b = IntArray(a.size) // ソートした配列を一時的に格納するための配列
 
         // 各数字がいくつ存在するかを表す分布表を作成する
         // ex) a[0]が5であれば、f[5]をインクリメントして1とする
         // ex) a[7]も5であれば、f[5]をインクリメントして2とする
-        for (i in min..a.size) {
-            f[a[i]]++
+        for (i in 0..a.lastIndex) {
+            f[a[i] - min]++
         }
-//        println("----------")
 //        f.forEach { print("$it, ") }
 
         // 配列の各値以下の要素が全部でいくつ存在するかを表す、累積度数分布表を作成する
         // ex) f[4]が6の場合は、0から4までに累計6つ存在することを意味する
-        for (i in 1..max) {
+        for (i in 1..(max - min) + 1) {
             f[i] += f[i - 1]
         }
 
-//        f.forEach { println(it) }
+//        f.forEachIndexed { idx, id -> print("idx: $idx id: $id, ") }
         // ex) a[8]が3でf[3]は5（0から3までに5つの数字が存在する、つまりa[8]は5番目の値） => b[5-1]に3を格納する
         // 値が重複した際に格納先が重複しないよう、fの要素をデクリメントする
         // 同じfの値を参照された際に、fの要素をデクリメントを予め施すことで、bへの格納を1つずらせる
-        for (i in a.lastIndex downTo min) { // a配列の末尾要素から順に走査する
-            b[--f[a[i]]] = a[i]
-            println("------")
+        for (i in a.lastIndex downTo 0) { // a配列の末尾要素から順に走査する
+            b[--f[a[i] - min]] = a[i]
+            println("-----")
             b.forEach { print("$it ") }
-            println("------")
+            println("-----\n")
         }
 
         // bをaにコピーする
@@ -54,11 +53,11 @@ class FSort {
         a.forEach { println(it) }
     }
 
-    private fun executeRelaxedFSort() {
+    fun executeRelaxedFSort() {
         val a = intArrayOf(22, 5, 11, 32, 120, 68, 70)
         var min = a[0]
         var max = a[0]
-        for (i in a.indices) {
+        for (i in 1 until a.size) {
             if (a[i] < min) {
                 min = a[i]
             }
@@ -66,7 +65,6 @@ class FSort {
                 max = a[i]
             }
         }
-
         fSort(a, max, min)
         a.forEach { println(it) }
     }
