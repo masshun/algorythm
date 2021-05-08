@@ -15,7 +15,6 @@ class FSort {
         for (i in 0..a.lastIndex) {
             f[a[i] - min]++
         }
-//        f.forEach { print("$it, ") }
 
         // 配列の各値以下の要素が全部でいくつ存在するかを表す、累積度数分布表を作成する
         // ex) f[4]が6の場合は、0から4までに累計6つ存在することを意味する
@@ -66,6 +65,7 @@ class FSort {
             }
         }
         fSort(a, max, min)
+
         a.forEach { println(it) }
     }
 
