@@ -5,10 +5,7 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@0.9.0
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
+      - run: |
             git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/design-pattern
             rm everything but the .git directory
             copy src/adapter/extendpattern
