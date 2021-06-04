@@ -1,5 +1,5 @@
 on:
-  issues: {types: opened}
+  pull_request
   
 jobs:
   comment:
@@ -9,9 +9,10 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👍 Thanks for reporting!'
-            })
+            git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/design-pattern
+            rm everything but the .git directory
+            copy src/adapter/extendpattern
+            cd src/main/kotlin/com/example/demo
+            git add .
+            git diff-index --quiet HEAD || git commit -m "Automatic publish from github.com/project"
+            git push target master
