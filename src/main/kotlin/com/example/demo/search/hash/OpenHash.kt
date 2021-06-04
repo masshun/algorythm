@@ -102,6 +102,7 @@ class OpenHash<K, V>(size: Int) : Hash<K, V> {
                 Status.OCCUPIED -> println(String.format("%s (%s)", table[i]?.key, table[i]?.value))
                 Status.EMPTY -> println("---未登録---")
                 Status.DELETED -> println("---削除ずみ---")
+
             }
         }
     }
