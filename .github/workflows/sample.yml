@@ -21,7 +21,6 @@ jobs:
         SLACK_MESSAGE: 'Post Content :rocket:'
         SLACK_TITLE: Post Title
         SLACK_USERNAME: masshun
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
   
 # on:
 #   pull_request
