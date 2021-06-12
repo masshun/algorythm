@@ -4,23 +4,21 @@ on:
       - master
     types: [closed]
 
-env:
-  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-
 jobs:
   runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: rtCamp/action-slack-notify@v2.2.0
-    - name: Slack Notification on Success
-    if: github.event.pull_request.merged == true
-    env:
-        SLACK_CHANNEL: github-actions-通知テスト
-        SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
-        SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_MESSAGE: 'Post Content :rocket:'
-        SLACK_TITLE: Post Title
-        SLACK_USERNAME: masshun
+        - name: Slack Notification on Success
+          if: github.event.pull_request.merged == true
+        - uses: actions/checkout@v2
+        - uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_CHANNEL: github-actions-通知テスト
+#           SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
+#           SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Post Content :rocket:'
+          SLACK_TITLE: Post Title
+          SLACK_USERNAME: masshun
   
 # on:
 #   pull_request
