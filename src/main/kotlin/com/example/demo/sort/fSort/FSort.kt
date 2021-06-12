@@ -6,6 +6,7 @@ package com.example.demo.sort.fSort
  */
 class FSort {
     private fun fSort(a: IntArray, max: Int, min: Int = 0) {
+
         val f = IntArray((max - min) + 2) // 累積度数
         val b = IntArray(a.size) // ソートした配列を一時的に格納するための配列
 
