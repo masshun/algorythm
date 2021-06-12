@@ -32,7 +32,6 @@ class FSort {
             b.forEach { print("$it ") }
             println("-----\n")
         }
-
         // bをaにコピーする
         for (i in a.indices) {
             a[i] = b[i]
