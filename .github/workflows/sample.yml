@@ -5,6 +5,7 @@ on:
     types: [closed]
 
 jobs:
+  slackNotification:
   runs-on: ubuntu-latest
     steps:
         - name: Slack Notification on Success
