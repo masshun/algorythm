@@ -46,6 +46,7 @@ class FSort {
                 max = a[i]
             }
         }
+
         fSort(a, max)
         a.forEach { println(it) }
     }
