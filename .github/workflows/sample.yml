@@ -9,11 +9,10 @@ env:
 
 jobs:
   runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
     - uses: actions/checkout@v2
     - name: Slack Notification on Success
-    if: success()
+    if: github.event.pull_request.merged == true
     env:
         SLACK_CHANNEL: github-actions-通知テスト
         SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
