@@ -5,6 +5,7 @@ package com.example.demo.sort.fSort
  * 要素の最小値と最大値があらかじめ判明している場合にのみ有効
  */
 class FSort {
+
     private fun fSort(a: IntArray, max: Int, min: Int = 0) {
         val f = IntArray((max - min) + 2) // 累積度数
         val b = IntArray(a.size) // ソートした配列を一時的に格納するための配列
