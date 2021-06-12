@@ -11,13 +11,13 @@ jobs:
     steps:
         - uses: actions/checkout@v2
         - name: Checkout
-
+          run: echo "checkouted!!"
         - name: Slack Notification on Success
           uses: rtCamp/action-slack-notify@v2
           env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 #             SLACK_CHANNEL: github-actions-test
 #             SLACK_COLOR: 'green'
-#             SLACK_MESSAGE: 'Post Content :rocket:'
-#             SLACK_TITLE: Post Title
+            SLACK_MESSAGE: 'Post Content :rocket:'
+            SLACK_TITLE: Post Title
 #             SLACK_USERNAME: masshun
