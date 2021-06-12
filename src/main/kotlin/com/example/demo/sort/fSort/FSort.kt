@@ -65,7 +65,6 @@ class FSort {
             }
         }
         fSort(a, max, min)
-
         a.forEach { println(it) }
     }
 }
