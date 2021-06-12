@@ -68,5 +68,4 @@ class FSort {
 
         a.forEach { println(it) }
     }
-
 }
