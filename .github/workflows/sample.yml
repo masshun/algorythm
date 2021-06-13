@@ -9,13 +9,17 @@ jobs:
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
+    - name: checkout
     - uses: actions/checkout@v2
     - uses: actions/github-script@v4
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
+    
+    - name: 'fetch'
+      run: git fetch --depth 1 origin master
+        
     - name: 'echo'
       run: |
-        git fetch --depth 1 origin master
         diff=git diff --diff-filter=M src/main/resources/db/mig.sql
         echo ${diff}
           
