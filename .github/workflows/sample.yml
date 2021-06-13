@@ -21,7 +21,7 @@ jobs:
       id: changes
       run: |
         git add .;
-        echo "::set-output name=migfile::$(git diff HEAD --diff-filter=M ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .sql$ | xargs)"
+        echo "::set-output name=migfile::$(git diff HEAD --diff-filter=M ${{ github.event.before }} ${{ github.sha }} | grep .sql$ | xargs)"
         echo "hogehogehoge"
 
   slackNotification:
