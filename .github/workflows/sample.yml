@@ -11,18 +11,19 @@ jobs:
     outputs:
       migfile: ${{ steps.changes.outputs.file }}
     steps:
-    - name: 'Checkout'
-      if: github.event.pull_request.merged == true
-      uses: actions/checkout@master
-      with:
-        fetch-depth: 0
+#     - name: 'Checkout'
+#       if: github.event.pull_request.merged == true
+#       uses: actions/checkout@master
+#       with:
+#         fetch-depth: 0
 
     - name: 'Get changed file'
       id: changes
       run: |
-        git add .;
-        echo "::set-output name=migfile::$(git diff origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF} | grep .sql$ | xargs)"
-        echo "hogehogehoge"
+        for file in $(git diff ${{github.event.before}}..${{github.event.after}} --name-only --diff-filter=M -- '*.mig\.sql') ; do
+            echo ${file}
+        done
+        echo "::set-output name=migfile::$(git diff origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF})"
 
   slackNotification:
     runs-on: ubuntu-latest
