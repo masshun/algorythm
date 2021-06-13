@@ -5,19 +5,17 @@ on:
     types: [closed]
 
 jobs:
-  notification:
-  if: github.event.pull_request.merged == true
-  runs-on: ubuntu-latest
+  slack Notification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v2
-        - name: Checkout
-          run: echo "checkouted!!"
-        - name: Slack Notification on Success
-          uses: rtCamp/action-slack-notify@v2
-          env:
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-#             SLACK_CHANNEL: github-actions-test
-#             SLACK_COLOR: 'green'
-            SLACK_MESSAGE: 'Post Content :rocket:'
-            SLACK_TITLE: Post Title
-#             SLACK_USERNAME: masshun
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      if: github.event.pull_request.merged == true
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_CHANNEL: github-actions-test
+        SLACK_MESSAGE: 'Post Content :rocket:'
+        SLACK_TITLE: Post Title
+        SLACK_USERNAME: masshun
