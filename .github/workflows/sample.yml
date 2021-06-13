@@ -3,6 +3,7 @@ on:
     branches:
       - 'master'
     types: [closed]
+    paths: src/main/resources/db/mig.sql
 
 jobs:
   slackNotification:
@@ -10,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'Checkout'
+      if: github.event.pull_request.merged == true
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
 
-    - name: 'Fetch'
-      run: git fetch --depth 1 origin master
+#     - name: 'Fetch'
+#       run: git fetch --depth 1 origin master
 
     - name: 'Echo'
       run: |
@@ -22,7 +26,6 @@ jobs:
         echo ${diff}
 
     - name: 'Slack Notification'
-      if: github.event.pull_request.merged == true
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
