@@ -6,16 +6,16 @@ on:
     paths: src/main/resources/db/mig.sql
 
 jobs:
-  changedFile:
+  changedfile:
     runs-on: ubuntu-latest
     outputs:
-      file: ${{ steps.changes.outputs.file }}
+      migfile: ${{ steps.changes.outputs.file }}
     steps:
     - name: 'Checkout'
       if: github.event.pull_request.merged == true
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
+#       with:
+#         fetch-depth: 2
 
 #     - name: 'Fetch'
 #       run: git fetch --depth 1 origin master
@@ -23,19 +23,19 @@ jobs:
     - name: 'Get changed file'
       id: changes
       run: |
-        echo "::set-output name=file::$(git diff HEAD --diff-filter=M src/main/resources/db/mig.sql)"
+        echo "::set-output name=migfile::$(git diff HEAD --diff-filter=M src/main/resources/db/mig.sql)"
         echo "hogehogehoge"
 
   slackNotification:
     runs-on: ubuntu-latest
-    needs: changedFile
-    if: ${{needs.changedFile.outputs.file}}
+    needs: changedfile
+    if: ${{needs.changedfile.outputs.migfile}}
     steps:
       - name: 'Slack Notification'
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_MESSAGE: echo ${{needs.changedFile.outputs.file}}
+          SLACK_MESSAGE: hogehoge
           SLACK_TITLE: マイグレーションのお知らせ
           SLACK_USERNAME: masshun
