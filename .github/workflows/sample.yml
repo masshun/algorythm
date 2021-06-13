@@ -13,15 +13,15 @@ jobs:
     steps:
     - name: 'Checkout'
       if: github.event.pull_request.merged == true
-      uses: actions/checkout@v2
+      uses: actions/checkout@master
       with:
-        fetch-depth: 1
+        fetch-depth: 0
 
     - name: 'Get changed file'
       id: changes
       run: |
         git add .;
-        echo "::set-output name=migfile::$(git diff HEAD --diff-filter=M ${{ github.event.before }} ${{ github.sha }} | grep .sql$ | xargs)"
+        echo "::set-output name=migfile::$(git diff --diff-filter=M origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF} | grep .sql$ | xargs)"
         echo "hogehogehoge"
 
   slackNotification:
