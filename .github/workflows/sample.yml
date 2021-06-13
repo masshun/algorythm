@@ -23,7 +23,7 @@ jobs:
     - name: 'Get changed file'
       id: changes
       run: |
-        echo "::set-output name=migfile::$(git diff HEAD --diff-filter=M ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .mig\.sql$ | xargs)"
+        echo "::set-output name=migfile::$(git diff HEAD --diff-filter=M ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .sql$ | xargs)"
         echo "hogehogehoge"
 
   slackNotification:
