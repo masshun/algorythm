@@ -13,10 +13,11 @@ jobs:
     - uses: actions/github-script@v4
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
-        run: |
-          git fetch --depth 1 origin master
-          diff=git diff --diff-filter=M src/main/resources/db/mig.sql
-          echo ${diff}
+    - name: 'echo'
+      run: |
+        git fetch --depth 1 origin master
+        diff=git diff --diff-filter=M src/main/resources/db/mig.sql
+        echo ${diff}
           
     - name: Slack Notification
       if: github.event.pull_request.merged == true
