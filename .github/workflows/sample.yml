@@ -10,13 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'Checkout'
-    - uses: actions/checkout@v2
-    - uses: actions/github-script@v4
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          const diff_url = context.payload.pull_request.diff_url
-          console.log(context)
+      uses: actions/checkout@v2
 
     - name: 'Fetch'
       run: git fetch --depth 1 origin master
