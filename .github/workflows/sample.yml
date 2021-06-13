@@ -1,0 +1,31 @@
+on:
+  pull_request:
+    branches:
+      - 'master'
+    types: [closed]
+
+jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+
+    - name: 'Fetch'
+      run: git fetch --depth 1 origin master
+
+    - name: 'Echo'
+      run: |
+        diff=git diff --diff-filter=M src/main/resources/db/mig.sql
+        echo ${diff}
+
+    - name: 'Slack Notification'
+      if: github.event.pull_request.merged == true
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_CHANNEL: github-actions-test
+        SLACK_MESSAGE: 'マイグレーションのお知らせ'
+        SLACK_TITLE: マイグレーションのお知らせ
+        SLACK_USERNAME: masshun
