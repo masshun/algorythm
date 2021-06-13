@@ -21,7 +21,7 @@ jobs:
       id: changes
       run: |
         git add .;
-        echo "::set-output name=migfile::$(git diff --diff-filter=M origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF} | grep .sql$ | xargs)"
+        echo "::set-output name=migfile::$(git diff origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF} | grep .sql$ | xargs)"
         echo "hogehogehoge"
 
   slackNotification:
