@@ -1,6 +1,7 @@
 package com.example.demo.sort.quick
 
 class QuickSort {
+
     private fun swap(a: IntArray, idx1: Int, idx2: Int) {
         val t = a[idx1]
         a[idx1] = a[idx2]
