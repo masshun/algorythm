@@ -13,7 +13,7 @@ jobs:
     - uses: actions/github-script@v4
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
-        scripts: |
+        script: |
           const diff_url = context.payload.pull_request.diff_url
           console.log(context)
           console.log(`diff: ${diff_url}`)
