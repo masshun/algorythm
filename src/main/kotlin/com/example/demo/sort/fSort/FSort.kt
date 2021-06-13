@@ -23,7 +23,7 @@ class FSort {
             f[i] += f[i - 1]
         }
 
-        f.forEachIndexed { idx, id -> print("idx: $idx id: $id, ") }
+//        f.forEachIndexed { idx, id -> print("idx: $idx id: $id, ") }
         // ex) a[8]が3でf[3]は5（0から3までに5つの数字が存在する、つまりa[8]は5番目の値） => b[5-1]に3を格納する
         // 値が重複した際に格納先が重複しないよう、fの要素をデクリメントする
         // 同じfの値を参照された際に、fの要素をデクリメントを予め施すことで、bへの格納を1つずらせる
