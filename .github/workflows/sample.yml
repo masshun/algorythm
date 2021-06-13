@@ -35,6 +35,6 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_MESSAGE: 'マイグレーションのお知らせ'
+          SLACK_MESSAGE: echo ${{needs.changedFile.outputs.file}}
           SLACK_TITLE: マイグレーションのお知らせ
           SLACK_USERNAME: masshun
