@@ -16,8 +16,8 @@ jobs:
         script: |
           const diff_url = context.payload.pull_request.diff_url
           console.log(context)
-          const result = github.request(diff_url)
-          console.log(`result: ${JSON.stringify(result)}`)
+          const result = await github.request(diff_url)
+          console.log(`result: ${result}`)
     - name: Slack Notification
       if: github.event.pull_request.merged == true
       uses: rtCamp/action-slack-notify@v2
