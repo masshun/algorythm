@@ -9,21 +9,19 @@ jobs:
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
+    - name: 'Checkout'
     - uses: actions/checkout@v2
     - uses: actions/github-script@v4
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-    
-    - name: 'fetch'
+
+    - name: 'Fetch'
       run: git fetch --depth 1 origin master
         
-    - name: 'echo'
+    - name: 'Echo'
       run: |
         diff=git diff --diff-filter=M src/main/resources/db/mig.sql
         echo ${diff}
           
-    - name: Slack Notification
+    - name: 'Slack Notification'
       if: github.event.pull_request.merged == true
       uses: rtCamp/action-slack-notify@v2
       env:
