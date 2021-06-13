@@ -18,6 +18,7 @@ jobs:
     - name: 'Echo'
       run: |
         diff=`git diff HEAD --diff-filter=M src/main/resources/db/mig.sql`
+        echo "hogehogehoge"
         echo ${diff}
 
     - name: 'Slack Notification'
