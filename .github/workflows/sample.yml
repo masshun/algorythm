@@ -10,12 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/github-script@v4
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        scripts: |
+          const diff_url = context.payload.pull_request.diff_url
+          console.log(context)
+          console.log(`diff: ${diff_url}`)
     - name: Slack Notification
       if: github.event.pull_request.merged == true
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_CHANNEL: github-actions-test
-        SLACK_MESSAGE: 'Post Content :rocket:'
-        SLACK_TITLE: Post Title
+        SLACK_MESSAGE: 'マイグレーションのお知らせ'
+        SLACK_TITLE: マイグレーションのお知らせ
         SLACK_USERNAME: masshun
