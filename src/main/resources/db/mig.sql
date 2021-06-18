@@ -1,1 +1,1 @@
--- sqlsqlsql uwaaa aaaaaa eeeaa aiueo oeuia bbcdsaaaaa aaafs
+-- sqlsqlsql uwaaa aaaaaa eeeaa aiueo oeuia bbc
