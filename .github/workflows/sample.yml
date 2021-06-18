@@ -14,13 +14,16 @@ jobs:
     - name: 'Checkout'
       uses: actions/checkout@master
       with:
-        fetch-depth: 1
+        ref: ${{ github.event.pull_request.head.sha }}
+        fetch-depth: 0
 
     - name: 'Get changed file'
       if: github.event.pull_request.merged == true
       id: changes
+      shell: bash
       run: |
-        echo "::set-output name=migfile::$(git diff --diff-filter=M src/main/resources/db/mig.sql)"
+        git fetch origin master
+        echo "::set-output name=migfile::$(git diff origin/master..HEAD)"
 
   slackNotification:
     runs-on: ubuntu-latest
