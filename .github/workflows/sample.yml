@@ -20,7 +20,7 @@ jobs:
       if: github.event.pull_request.merged == true
       id: changes
       run: |
-        echo "::set-output name=migfile::$(git diff --diff-filter=M ${{ github.event.before }} ${{ github.sha }} --'*.mig\.sql')"
+        echo "::set-output name=migfile::$(git diff --diff-filter=M src/main/resources/db/mig.sql ${{ github.event.before }} ${{ github.sha }})"
 
   slackNotification:
     runs-on: ubuntu-latest
