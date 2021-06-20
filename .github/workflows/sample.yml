@@ -22,7 +22,7 @@ jobs:
       id: changes
       shell: bash
       run: |
-        git diff origin/${{github.base_ref}}..origin/${{github.base_ref}} --diff-filter=AM > mydiff
+        git diff origin/${{github.base_ref}}..origin/${{github.head_ref}} --diff-filter=AM > mydiff
         cat mydiff
         echo "::set-output name=migfile::$(cat mydiff)"
 
