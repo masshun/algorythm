@@ -22,8 +22,9 @@ jobs:
       id: changes
       shell: bash
       run: |
-        git fetch origin master
-        git diff origin/master..HEAD > mydiff
+        git fetch origin ${TARGET_BRANCH}
+        git diff HEAD..origin/master > mydiff
+        cat mydiff
         diff=$(cat mydiff)
         echo "::set-output name=migfile::${diff}"
 
