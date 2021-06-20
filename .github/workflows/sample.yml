@@ -6,7 +6,7 @@ on:
     paths: src/main/resources/db/mig.sql
 
 env:
-  TARGET_BRANCH: ${{ github.base_ref }}
+  HEAD_BRANCH: ${{ github.head_ref }}
 
 jobs:
   changedfile:
@@ -26,10 +26,9 @@ jobs:
       shell: bash
       run: |
         git fetch origin ${TARGET_BRANCH}
-        git diff origin/${TARGET_BRANCH} HEAD --diff-filter=AM > mydiff
+        git diff origin/${HEAD_BRANCH} HEAD --diff-filter=AM > mydiff
         cat mydiff
-        diff=$(cat mydiff)
-        echo "::set-output name=migfile::${diff}"
+        echo "::set-output name=migfile::$(cat mydiff)"
 
   slackNotification:
     runs-on: ubuntu-latest
