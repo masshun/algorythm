@@ -5,9 +5,6 @@ on:
     types: [closed]
     paths: src/main/resources/db/mig.sql
 
-env:
-  HEAD_BRANCH: ${{ github.head_ref }}
-
 jobs:
   changedfile:
     runs-on: ubuntu-latest
@@ -25,8 +22,8 @@ jobs:
       id: changes
       shell: bash
       run: |
-        git fetch origin ${HEAD_BRANCH}
-        git diff origin/${HEAD_BRANCH} HEAD --diff-filter=AM > mydiff
+        git fetch origin ${{github.base_ref}}
+        git diff origin/${{github.base_ref}} HEAD --diff-filter=AM > mydiff
         cat mydiff
         echo "::set-output name=migfile::$(cat mydiff)"
 
