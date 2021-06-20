@@ -1,5 +1,5 @@
 -- sqlsqlsql
 --lllggg ggg
 -- hgggっっg
--- delete from t_crop;
+-- delete from t_crop;f
 -- select * from m_crop
