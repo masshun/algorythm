@@ -12,18 +12,15 @@ jobs:
       migfile: ${{ steps.changes.outputs.migfile }}
     steps:
     - name: 'Checkout'
-      uses: actions/checkout@master
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-        fetch-depth: 0
+      uses: actions/checkout@v2
 
     - name: 'Get changed file'
       if: github.event.pull_request.merged == true
       id: changes
       shell: bash
       run: |
-        git fetch
-        git diff origin/${{github.base_ref}} ${{github.head_ref}} --diff-filter=AM > mydiff
+        git fetch --depth 1 origin ${{ github.base_ref }}
+        git diff git diff origin/${{ github.base_ref }} HEAD --diff-filter=AM > mydiff
         cat mydiff
         echo "::set-output name=migfile::$(cat mydiff)"
 
