@@ -21,7 +21,7 @@ jobs:
       id: changes
       shell: bash
       run: |
-        git diff --diff-filter=AM > mydiff
+        git diff HEAD^..HEAD > mydiff
         cat mydiff
         echo "::set-output name=migfile::$(cat mydiff)"
 
