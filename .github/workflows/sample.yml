@@ -25,7 +25,7 @@ jobs:
       id: changes
       shell: bash
       run: |
-        git fetch origin ${TARGET_BRANCH}
+        git fetch origin ${HEAD_BRANCH}
         git diff origin/${HEAD_BRANCH} HEAD --diff-filter=AM > mydiff
         cat mydiff
         echo "::set-output name=migfile::$(cat mydiff)"
