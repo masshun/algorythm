@@ -24,7 +24,7 @@ jobs:
       run: |
         git fetch origin master
         git diff origin/master..HEAD > mydiff
-        echo "::set-output name=migfile::$(cat mydiff)"
+        echo "::set-output name=migfile::${mydiff}"
 
   slackNotification:
     runs-on: ubuntu-latest
