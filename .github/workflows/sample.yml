@@ -9,7 +9,7 @@ jobs:
   changedfile:
     runs-on: ubuntu-latest
     outputs:
-      migfile: ${{ steps.changes.outputs.file }}
+      migfile: ${{ steps.changes.outputs.migfile }}
     steps:
     - name: 'Checkout'
       uses: actions/checkout@master
@@ -24,7 +24,8 @@ jobs:
       run: |
         git fetch origin master
         git diff origin/master..HEAD > mydiff
-        echo "::set-output name=migfile::${mydiff}"
+        diff=$(cat mydiff)(
+        echo "::set-output name=migfile::${diff}"
 
   slackNotification:
     runs-on: ubuntu-latest
@@ -36,6 +37,6 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_MESSAGE: hogehoge
+          SLACK_MESSAGE: ${{needs.changedfile.outputs.migfile}}
           SLACK_TITLE: マイグレーションのお知らせ
           SLACK_USERNAME: masshun
