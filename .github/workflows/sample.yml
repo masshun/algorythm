@@ -20,7 +20,7 @@ jobs:
       shell: bash
       run: |
         git fetch --depth 1 origin ${{ github.base_ref }}
-        git diff git diff origin/${{ github.base_ref }} HEAD --diff-filter=AM > mydiff
+        git diff origin/${{ github.base_ref }} HEAD --diff-filter=AM > mydiff
         cat mydiff
         echo "::set-output name=migfile::$(cat mydiff)"
 
