@@ -23,7 +23,7 @@ jobs:
       run: |
         git diff HEAD^..HEAD > mydiff
         cat mydiff
-        echo "::set-output name=migfile::$(cat mydiff)"
+        echo "::set-output name=migfile::${mydiff}"
 
   slackNotification:
     runs-on: ubuntu-latest
