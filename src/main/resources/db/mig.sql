@@ -1,3 +1,4 @@
 -- sqlsqlsql
 --lllggg ggg
--- select * from m_crop:
+-- delete from t_crop;
+-- select * from m_crop
