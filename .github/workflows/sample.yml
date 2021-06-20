@@ -5,6 +5,9 @@ on:
     types: [closed]
     paths: src/main/resources/db/mig.sql
 
+env:
+  TARGET_BRANCH: ${{ github.base_ref }}
+
 jobs:
   changedfile:
     runs-on: ubuntu-latest
