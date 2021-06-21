@@ -28,7 +28,6 @@ jobs:
         echo "break-line"
         echo "::set-output name=migfile::$mydiff"
         echo "content: $mydiff"
-        echo "::set-output name=migfile::$(cat mydiff)"
         echo "res is ${{ steps.changes.outputs.migfile }}"
 
   slackNotification:
