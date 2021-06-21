@@ -22,9 +22,11 @@ jobs:
       shell: bash
       run: |
         git diff HEAD^..HEAD --diff-filter=AM > mydiff
-        mydiff="$(cat mydiff//'%'/'%25')"
-        mydiff="$(cat mydiff//$'\n'/'%0A')"
-        mydiff="$(cat mydiff//$'\r'/'%0D')"
+        mydiff="${mydiff//'%'/'%25'}"
+        mydiff="${mydiff//$'\n'/'%0A'}"
+        mydiff="${mydiff//$'\r'/'%0D'}"
+        echo "break-line"
+        echo $mydiff
         echo "::set-output name=migfile::$(cat mydiff)"
         echo "The result is ${{ steps.changes.outputs.migfile }}"
 
