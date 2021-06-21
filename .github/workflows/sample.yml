@@ -26,6 +26,8 @@ jobs:
         mydiff="${mydiff//$'\n'/'%0A'}"
         mydiff="${mydiff//$'\r'/'%0D'}"
         echo "break-line"
+        echo "::set-output name=migfile::$mydiff"
+        echo "content: $mydiff"
         echo "::set-output name=migfile::$(cat mydiff)"
         echo "res is ${{ steps.changes.outputs.migfile }}"
 
