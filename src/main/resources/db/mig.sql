@@ -1,5 +1,5 @@
 -- sqlsqlsql
---lllggg gggfff
+--lllggg gggfffddd
 -- hgggっっgffff
 -- delete from t_cropfff
 ALTER TABLE hogehogeho
