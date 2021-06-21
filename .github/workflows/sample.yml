@@ -26,9 +26,8 @@ jobs:
         mydiff="${mydiff//$'\n'/'%0A'}"
         mydiff="${mydiff//$'\r'/'%0D'}"
         echo "break-line"
-        echo $(cat mydiff)
         echo "::set-output name=migfile::$(cat mydiff)"
-        echo "The result is ${{ changedfile.outputs.migfile }}"
+        echo ${{ steps.changes.outputs.migfile }}
 
   slackNotification:
     runs-on: ubuntu-latest
