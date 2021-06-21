@@ -2,5 +2,5 @@
 --lllggg gggfffddd
 -- hgggっっgffff
 -- delete from t_cropfff
-ALTER TABLE hogehogeho
+--ALTER TABLE hogehogeho
 SELECT * FROM m_crop WHERE t_id IS NOT NULL;
