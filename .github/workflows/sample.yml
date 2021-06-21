@@ -21,13 +21,13 @@ jobs:
       id: changes
       shell: bash
       run: |
-        git diff HEAD^..HEAD --diff-filter=AM > mydiff
+        mydiff=$(git diff HEAD^..HEAD --diff-filter=AM)
         mydiff="${mydiff//'%'/'%25'}"
         mydiff="${mydiff//$'\n'/'%0A'}"
         mydiff="${mydiff//$'\r'/'%0D'}"
         echo "break-line"
         echo "::set-output name=migfile::$(cat mydiff)"
-        echo ${{ steps.changes.outputs.migfile }}
+        echo "res is ${{ steps.changes.outputs.migfile }}"
 
   slackNotification:
     runs-on: ubuntu-latest
