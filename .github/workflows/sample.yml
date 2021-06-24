@@ -42,7 +42,7 @@ jobs:
       with:
         script: |
           console.log(context)
-          return context.milestone
+          return JSON.stringify(context.milestone)
         result-encoding: string
 
   slackNotification:
@@ -55,6 +55,6 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_MESSAGE: 'Post Content ${{needs.changedfile.outputs.migfile}} \r ${{needs.changedfile.outputs.datetime}} \r ${{ needs.changedfile.outputs.milestone }}'
+          SLACK_MESSAGE: 'Post Content ${{needs.changedfile.outputs.migfile}} \n ${{needs.changedfile.outputs.datetime}} \n ${{ needs.changedfile.outputs.milestone }}'
           SLACK_TITLE: マイグレーションのお知らせ
           SLACK_USERNAME: masshun
