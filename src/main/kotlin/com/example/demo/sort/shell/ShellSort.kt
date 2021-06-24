@@ -1,7 +1,6 @@
 package com.example.demo.sort.shell
 
 class ShellSort {
-
     /**
      * 配列で4 ,2 ,1の間隔で並んでいる要素同士をソートする
      * 最後の1の間隔でのは単純挿入ソート
