@@ -4,6 +4,7 @@
  fffff
  ffffsssdffff
  aafff
+SELECT * FROM a_oo;
 SELECT * FROM t_aa;
 UPDATE;;;;
 DELETE FROM a_hoge;ffffhhj
