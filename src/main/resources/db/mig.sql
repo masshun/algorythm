@@ -1,7 +1,7 @@
 -- sqlsqlsql
 --lllggg gggfffddd
 -- hgggっっgfffffffhihi
--- delete from t_cropffffffffhhhhjhjjkhjkhghghgg
+ delete from t_cropffffffffhhhhjhjjkhjkhghghgg
 SELECT * FROM t_aa;
 UPDATE;;;;
 DELETE FROM a_hoge;ffffhhj
