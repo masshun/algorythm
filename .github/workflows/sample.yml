@@ -54,4 +54,3 @@ jobs:
           SLACK_CHANNEL: github-actions-test
           SLACK_MESSAGE: ${{needs.changedfile.outputs.migfile}} \r\n ${{needs.changedfile.outputs.datetime}} \r\n ${{ needs.changedfile.outputs.milestone }}
           SLACK_TITLE: マイグレーションのお知らせ
-          SLACK_USERNAME: masshun
