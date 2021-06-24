@@ -4,6 +4,7 @@
  fffff
  ffffsssdffff
  aafff
+ kk
 SELECT ROW_NUMBER() AS hoge;
 SELECT * FROM a_oo;
 aaa
