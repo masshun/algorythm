@@ -18,7 +18,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: 'Get changed file'
+    - name: 'Get Changed File'
       if: github.event.pull_request.merged == true
       id: changes
       shell: bash
@@ -29,7 +29,7 @@ jobs:
         mydiff="${mydiff//$'\r'/'%0D'}"
         echo "::set-output name=migfile::$mydiff"
     
-    - name: 'Get JST datetime'
+    - name: 'Get JST Datetime'
       id: datetime
       run: echo "::set-output name=datetime::$(date +'%Y-%m-%d %H:%M:%S')"
       env:
@@ -47,12 +47,12 @@ jobs:
     needs: changedfile
     if: ${{needs.changedfile.outputs.migfile}}
     steps:
-      - name: 'Slack Notification'
+      - name: 'Send Slack Notification'
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_TITLE: マイグレーションのお知らせ :bell:
+          SLACK_TITLE: 'マイグレーションのお知らせ :bell:'
           SLACK_MESSAGE: |
             日時: ${{ needs.changedfile.outputs.datetime }}
             バージョン: ${{ needs.changedfile.outputs.milestone }}
