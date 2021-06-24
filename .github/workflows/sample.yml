@@ -52,8 +52,8 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_TITLE: マイグレーションのお知らせ  日時： ${{needs.changedfile.outputs.datetime}} バージョン： ${{ needs.changedfile.outputs.milestone }}
+          SLACK_TITLE: マイグレーションのお知らせ バージョン： ${{ needs.changedfile.outputs.milestone }}
           SLACK_MESSAGE: |
-            ${{ needs.changedfile.outputs.migfile }} \
-            ${{ needs.changedfile.outputs.datetime }} \
-            ${{ needs.changedfile.outputs.milestone }}
+            日時: ${{ needs.changedfile.outputs.datetime }}
+            バージョン: ${{ needs.changedfile.outputs.milestone }}
+            変更差分: ${{ needs.changedfile.outputs.migfile }}
