@@ -28,11 +28,10 @@ jobs:
         mydiff="${mydiff//$'\n'/'%0A'}"
         mydiff="${mydiff//$'\r'/'%0D'}"
         echo "::set-output name=migfile::$mydiff"
-        echo "content: $mydiff"
     
     - name: 'Get JST datetime'
       id: datetime
-      run: echo "::set-output name=datetime::$(date +'%Y-%m-%d')"
+      run: echo "::set-output name=datetime::$(date +'%Y-%m-%d %H:%M:%S')"
       env:
         TZ: 'Asia/Tokyo'
     
@@ -40,9 +39,7 @@ jobs:
       uses: actions/github-script@v4
       id: milestone
       with:
-        script: |
-          console.log(typeof context.payload.pull_request.milestone.title)
-          return context.payload.pull_request.milestone.title
+        script: return context.payload.pull_request.milestone.title
         result-encoding: string
 
   slackNotification:
@@ -55,6 +52,6 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_MESSAGE: ${{needs.changedfile.outputs.migfile}} \n ${{needs.changedfile.outputs.datetime}} \n ${{ needs.changedfile.outputs.milestone }}
+          SLACK_MESSAGE: ${{needs.changedfile.outputs.migfile}} \r\n ${{needs.changedfile.outputs.datetime}} \r\n ${{ needs.changedfile.outputs.milestone }}
           SLACK_TITLE: マイグレーションのお知らせ
           SLACK_USERNAME: masshun
