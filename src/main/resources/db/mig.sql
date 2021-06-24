@@ -4,7 +4,9 @@
  fffff
  ffffsssdffff
  aafff
+SELECT ROW_NUMBER() AS hoge;
 SELECT * FROM a_oo;
+aaa
 SELECT * FROM t_aa;
 UPDATE;;;;
 DELETE FROM a_hoge;ffffhhj
