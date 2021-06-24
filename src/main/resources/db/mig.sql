@@ -1,10 +1,9 @@
--- sqlsqlsql
---lllggg gggfffddd
--- hgggっっgfffffffhihi
+ hgggっっgfffffffhihi
  delete from t_cropffffffffhhhhjhjjkhjkhghghgg
  aaaa
  fffff
  ffff
+ aa
 SELECT * FROM t_aa;
 UPDATE;;;;
 DELETE FROM a_hoge;ffffhhj
