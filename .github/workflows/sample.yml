@@ -11,6 +11,7 @@ jobs:
     outputs:
       migfile: ${{ steps.changes.outputs.migfile }}
       datetime: ${{ steps.datetime.outputs.datetime }}
+      milestone: ${{ steps.milestone.outputs.milestone }}
     steps:
     - name: 'Checkout'
       uses: actions/checkout@master
@@ -37,9 +38,12 @@ jobs:
     
     - name: 'Get pullRequest milestone'
       uses: actions/github-script@v4
+      id: milestone
       with:
         script: |
           console.log(context)
+          return context.milestone
+        result-encoding: string
 
   slackNotification:
     runs-on: ubuntu-latest
@@ -51,6 +55,6 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_MESSAGE: ${{needs.changedfile.outputs.migfile}}
+          SLACK_MESSAGE: 'Post Content ${{needs.changedfile.outputs.migfile}} \r ${{needs.changedfile.outputs.datetime}} \r ${{ needs.changedfile.outputs.milestone }}'
           SLACK_TITLE: マイグレーションのお知らせ
           SLACK_USERNAME: masshun
