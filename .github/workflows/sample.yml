@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       migfile: ${{ steps.changes.outputs.migfile }}
+      datetime: ${{ steps.datetime.outputs.datetime }}
     steps:
     - name: 'Checkout'
       uses: actions/checkout@master
@@ -25,10 +26,20 @@ jobs:
         mydiff="${mydiff//'%'/'%25'}"
         mydiff="${mydiff//$'\n'/'%0A'}"
         mydiff="${mydiff//$'\r'/'%0D'}"
-        echo "break-line"
         echo "::set-output name=migfile::$mydiff"
         echo "content: $mydiff"
-        echo "res is ${{ steps.changes.outputs.migfile }}"
+    
+    - name: 'Get JST datetime'
+      id: datetime
+      env:
+        TZ: 'Asia/Tokyo'
+      run: echo "::set-output name=datetime::$(date +'%Y-%m-%d')"
+    
+    - name: 'Get pullRequest milestone'
+    - uses: actions/github-script@v4
+      with:
+        script: |
+          console.log(context)
 
   slackNotification:
     runs-on: ubuntu-latest
