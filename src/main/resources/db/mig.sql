@@ -1,6 +1,6 @@
 -- sqlsqlsql
 --lllggg gggfffddd
--- hgggっっgffff
+-- hgggっっgfffffff
 -- delete from t_cropffffffffhhhhjhj
 DELETE FROM a_hoge;fffjijiff
 --ALTER TABLE hogehogehogg
