@@ -41,8 +41,8 @@ jobs:
       id: milestone
       with:
         script: |
-          console.log(JSON.stringify(context.payload.pull_request.milestone))
-          return JSON.stringify(context.payload.pull_request.milestone)
+          console.log(JSON.stringify(context.payload.pull_request.milestone, null, "\t"))
+          return context.payload.pull_request.milestone.title
         result-encoding: string
 
   slackNotification:
