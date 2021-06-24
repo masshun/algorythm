@@ -35,7 +35,7 @@ jobs:
       env:
         TZ: 'Asia/Tokyo'
     
-    - name: 'Get pullRequest milestone'
+    - name: 'Get Pull-Request Milestone'
       uses: actions/github-script@v4
       id: milestone
       with:
