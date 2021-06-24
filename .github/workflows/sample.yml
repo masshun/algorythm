@@ -36,7 +36,7 @@ jobs:
         TZ: 'Asia/Tokyo'
     
     - name: 'Get pullRequest milestone'
-    - uses: actions/github-script@v4
+      uses: actions/github-script@v4
       with:
         script: |
           console.log(context)
