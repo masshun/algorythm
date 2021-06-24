@@ -31,9 +31,9 @@ jobs:
     
     - name: 'Get JST datetime'
       id: datetime
+      run: echo "::set-output name=datetime::$(date +'%Y-%m-%d')"
       env:
         TZ: 'Asia/Tokyo'
-      run: echo "::set-output name=datetime::$(date +'%Y-%m-%d')"
     
     - name: 'Get pullRequest milestone'
     - uses: actions/github-script@v4
