@@ -47,10 +47,13 @@ jobs:
     needs: changedfile
     if: ${{needs.changedfile.outputs.migfile}}
     steps:
+      - name: 'Compose Message'
+        id: message-for-slack
+        run: echo "::set-output name=message::${{needs.changedfile.outputs.migfile}}%0A${{needs.changedfile.outputs.datetime}}%0A${{ needs.changedfile.outputs.milestone }}"
+    
       - name: 'Slack Notification'
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_MESSAGE: "${{needs.changedfile.outputs.migfile}}%0A${{needs.changedfile.outputs.datetime}}%0A${{ needs.changedfile.outputs.milestone }}"
-          SLACK_TITLE: マイグレーションのお知らせ
+          SLACK_MESSAGE: ${{ steps.message-for-slack.outputs.message }}
