@@ -57,4 +57,4 @@ jobs:
             日時: ${{ needs.changedfile.outputs.datetime }}
             バージョン: ${{ needs.changedfile.outputs.milestone }}
             変更差分: 
-              ${{ needs.changedfile.outputs.migfile }}
+            ${{ needs.changedfile.outputs.migfile }}
