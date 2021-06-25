@@ -23,7 +23,7 @@ jobs:
       id: changes
       shell: bash
       run: |
-        mydiff=$(git diff HEAD^..HEAD --diff-filter=AM src/main/resources/db/mig.sql | sed -n '5,$p')
+        mydiff=$(git diff HEAD^..HEAD --diff-filter=AM src/main/resources/db/mig.sql | sed -ne '5,$p')
         mydiff="${mydiff//'%'/'%25'}"
         mydiff="${mydiff//$'\n'/'%0A'}"
         mydiff="${mydiff//$'\r'/'%0D'}"
