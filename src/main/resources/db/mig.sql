@@ -8,6 +8,7 @@
 SELECT ROW_NUMBER() AS hoge;
 SELECT * FROM a_oo;
 aaa
+kk
 SELECT * FROM t_aa;
 INSERT INTO b_log (log_id, created_at) SELECT a_id FROM s_gg;
 UPDATE;;;;
