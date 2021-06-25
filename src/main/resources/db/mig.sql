@@ -1,6 +1,7 @@
  hgggっっgfffffffhihi
  delete from t_cropffffffffhhhhjhjjkhjkhghghgg
  aaaa
+ ggg
  fffff
  ffffsssdffff
  aafff
@@ -8,6 +9,7 @@
 SELECT ROW_NUMBER() AS hoge;
 SELECT * FROM a_oo;
 aaa
+fff
 kk
 SELECT * FROM t_aa;
 INSERT INTO b_log (log_id, created_at) SELECT a_id FROM s_gg;
