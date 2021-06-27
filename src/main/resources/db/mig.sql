@@ -20,5 +20,6 @@ SELECT * FROM m_crop WHERE t_id IS NOT NULL;
 SELECT * FROM n_aa;
 ALTER TABLE l_log aaaa;
 DELETE FROM t_time;
+jojo
 hogehoge:
 fff
