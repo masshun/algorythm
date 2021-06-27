@@ -15,7 +15,7 @@ jobs:
       milestone: ${{ steps.milestone.outputs.result }}
     steps:
     - name: 'echo'
-      run: echo 'echo log'
+      run: echo "echo log"
   
     - name: 'Checkout'
       uses: actions/checkout@master
