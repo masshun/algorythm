@@ -21,3 +21,4 @@ SELECT * FROM n_aa;
 ALTER TABLE l_log aaaa;
 DELETE FROM t_time;
 hogehoge:
+fff
