@@ -1,7 +1,7 @@
 on:
   pull_request:
     branches:
-      - 'master'
+#       - 'master'
       - 'develop/1.1.0'
     types: [closed]
     paths: src/main/resources/db/mig.sql
