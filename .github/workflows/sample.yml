@@ -1,31 +1,64 @@
 on:
   pull_request:
     branches:
-      - 'master'
+#       - 'master'
+      - develop/1.1.0
     types: [closed]
+    paths: src/main/resources/db/mig.sql
 
 jobs:
-  slackNotification:
-    name: Slack Notification
+  changedfile:
     runs-on: ubuntu-latest
+    outputs:
+      migfile: ${{ steps.changes.outputs.migfile }}
+      datetime: ${{ steps.datetime.outputs.datetime }}
+      milestone: ${{ steps.milestone.outputs.result }}
     steps:
+    - name: 'echo'
+      run: echo "echo log"
+  
     - name: 'Checkout'
-      uses: actions/checkout@v2
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 0
 
-    - name: 'Fetch'
-      run: git fetch --depth 1 origin master
-
-    - name: 'Echo'
-      run: |
-        diff=`git diff origin/master HEAD --diff-filter=M src/main/resources/db/mig.sql`
-        echo ${diff}
-
-    - name: 'Slack Notification'
+    - name: 'Get Changed File'
       if: github.event.pull_request.merged == true
-      uses: rtCamp/action-slack-notify@v2
+      id: changes
+      shell: bash
+      run: |
+        mydiff=$(git diff HEAD^..HEAD --diff-filter=AM src/main/resources/db/mig.sql | egrep "^\+|^\-")
+        mydiff="${mydiff//'%'/'%25'}"
+        mydiff="${mydiff//$'\n'/'%0A'}"
+        mydiff="${mydiff//$'\r'/'%0D'}"
+        echo "::set-output name=migfile::$mydiff"
+    
+    - name: 'Get JST Datetime'
+      id: datetime
+      run: echo "::set-output name=datetime::$(date +'%Y-%m-%d %H:%M:%S')"
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_CHANNEL: github-actions-test
-        SLACK_MESSAGE: 'マイグレーションのお知らせ'
-        SLACK_TITLE: マイグレーションのお知らせ
-        SLACK_USERNAME: masshun
+        TZ: 'Asia/Tokyo'
+    
+    - name: 'Get Pull-Request Milestone'
+      uses: actions/github-script@v4
+      id: milestone
+      with:
+        script: return context.payload.pull_request.milestone.title
+        result-encoding: string
+
+  slackNotification:
+    runs-on: ubuntu-latest
+    needs: changedfile
+    if: ${{needs.changedfile.outputs.migfile}}
+    steps:
+      - name: 'Send Slack Notification'
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: github-actions-test
+          SLACK_TITLE: 'マイグレーションのお知らせ :bell:'
+          SLACK_MESSAGE: |
+            日時: ${{ needs.changedfile.outputs.datetime }}
+            バージョン: ${{ needs.changedfile.outputs.milestone }}
+            変更差分: 
+            ${{ needs.changedfile.outputs.migfile }}
