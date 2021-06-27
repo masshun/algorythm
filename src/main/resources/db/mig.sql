@@ -19,6 +19,7 @@ ALTER TABLE hogehogehoggggghige
 SELECT * FROM m_crop WHERE t_id IS NOT NULL;
 SELECT * FROM n_aa;
 ALTER TABLE l_log aaaa;
+aaajjj
 DELETE FROM t_time;
 aaa
 aaa;
