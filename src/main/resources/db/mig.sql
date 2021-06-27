@@ -17,3 +17,5 @@ UPDATE;;;;
 DELETE FROM a_hoge;ffffhhj
 ALTER TABLE hogehogehoggggghige
 SELECT * FROM m_crop WHERE t_id IS NOT NULL;
+-- sample sample
+ALTER TABLE l_log aaaa;
