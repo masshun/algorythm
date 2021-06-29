@@ -20,6 +20,7 @@ SELECT * FROM m_crop WHERE t_id IS NOT NULL;
 SELECT * FROM n_aa;
 ALTER TABLE l_log aaaa;
 aaajjj
+aaaiiii
 SELECT * FROM aaaa;
 ALTER TABLE a_time aaa;
 DELETE FROM t_time;
