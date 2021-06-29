@@ -21,6 +21,7 @@ SELECT * FROM n_aa;
 ALTER TABLE l_log aaaa;
 aaajjj
 aaaiiii
+bbbb
 SELECT * FROM aaaa;
 ALTER TABLE a_time aaa;
 DELETE FROM t_time;
