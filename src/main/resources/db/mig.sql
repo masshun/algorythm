@@ -29,3 +29,5 @@ DELETE FROM t_time;
 aaa
 aaa;
 fff
+
+select * from hoge_hoge;
