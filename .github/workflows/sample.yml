@@ -45,10 +45,11 @@ jobs:
           console.log(JSON.stringify(context, null, '\t'))
           console.log('user: ')
           console.log(context.payload.pull_request.user.login)
-          return {
+          const ret = {
             username: context.payload.pull_request.user.login,
             milestone: context.payload.pull_request.milestone.title
           }
+          return JSON.stringify(ret)
 
   slackNotification:
     runs-on: ubuntu-latest
