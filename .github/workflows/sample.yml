@@ -60,7 +60,7 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
-          SLACK_USERNAME: ${{ needs.changedfile.outputs.pull_request.username }}
+          SLACK_USERNAME: 'hogehoge'
           SLACK_TITLE: 'マイグレーションのお知らせ :bell:'
           SLACK_MESSAGE: |
             日時: ${{ needs.changedfile.outputs.datetime }}
