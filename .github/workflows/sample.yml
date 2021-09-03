@@ -42,7 +42,7 @@ jobs:
       id: milestone
       with:
         script: |
-          console.log(context)
+          console.log(JSON.stringify(context.pull_request.user))
           return context.payload.pull_request.milestone.title
         result-encoding: string
 
