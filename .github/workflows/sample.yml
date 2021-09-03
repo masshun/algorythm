@@ -64,10 +64,10 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
           SLACK_TITLE: 'マイグレーションのお知らせ :bell:'
-          SLACK_USERNAME: --data '{\"username\" ${{ needs.changedfile.outputs.pull_request }}}'
+          SLACK_USERNAME: ${{ fromJson(needs.changedfile.outputs.pull_request).username }}
           SLACK_MESSAGE: |
-            PR: --data '{\"username\" ${{ needs.changedfile.outputs.pull_request }}}'
+            PR: ${{ fromJson(needs.changedfile.outputs.pull_request).username }}
             日時: ${{ needs.changedfile.outputs.datetime }}
-            バージョン: --data '{\"milestone\" ${{ needs.changedfile.outputs.pull_request }}}'
+            バージョン:${{ fromJson(needs.changedfile.outputs.pull_request).milestone }}
             変更差分: 
             ${{ needs.changedfile.outputs.migfile }}
