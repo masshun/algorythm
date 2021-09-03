@@ -42,9 +42,12 @@ jobs:
       id: milestone
       with:
         script: |
-          console.log(JSON.stringify(context.payload.pull_request.user, null, '\t'))
-          return context.payload.pull_request.milestone.title
-        result-encoding: string
+          const res = {
+            username: context.payload.pull_request.user.login,
+            milestone: context.payload.pull_request.milestone.title
+          }
+          return res
+#         result-encoding: string
 
   slackNotification:
     runs-on: ubuntu-latest
@@ -56,9 +59,10 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
+          SALCK_USERNAME: ${{ needs.changedfile.outputs.milestone.username }}
           SLACK_TITLE: 'マイグレーションのお知らせ :bell:'
           SLACK_MESSAGE: |
             日時: ${{ needs.changedfile.outputs.datetime }}
-            バージョン: ${{ needs.changedfile.outputs.milestone }}
+            バージョン: ${{ needs.changedfile.outputs.milestone.milestone }}
             変更差分: 
             ${{ needs.changedfile.outputs.migfile }}
