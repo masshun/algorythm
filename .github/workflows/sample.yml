@@ -43,6 +43,8 @@ jobs:
       with:
         script: |
           console.log(JSON.stringify(context, null, '\t'))
+          console.log('user: ')
+          console.log(context.payload.pull_request.user.login)
           return {
             username: context.payload.pull_request.user.login,
             milestone: context.payload.pull_request.milestone.title
