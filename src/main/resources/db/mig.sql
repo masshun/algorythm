@@ -37,3 +37,5 @@ alter table a_hoge;
 delete s_ssss;
 
 update hoge set aaaa = 1;
+
+select * hogehoge;
