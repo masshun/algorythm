@@ -57,6 +57,7 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: github-actions-test
+          SLACK_LINK_NAMES: true
           SLACK_TITLE: 'マイグレーションのお知らせ :bell:'
           SLACK_MESSAGE: |
             PR者: ${{ fromJson(needs.changedfile.outputs.pull_request).username }}
