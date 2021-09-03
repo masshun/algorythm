@@ -33,3 +33,5 @@ fff
 select * from hoge_hoge;
 
 alter table a_hoge;
+
+delete s_ssss;
