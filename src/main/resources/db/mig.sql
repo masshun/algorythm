@@ -40,3 +40,4 @@ update hoge set aaaa = 1;
 
 select * hogehoge;
 update hogwhofufufuf;
+select * hogehogefugafuga;
