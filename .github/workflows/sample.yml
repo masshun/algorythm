@@ -57,4 +57,17 @@ jobs:
     if: ${{needs.changedfile.outputs.migfile}}
     steps:
       - name: 'Send Slack Notification'
-        run: echo "${{ needs.changedfile.outputs.pull_request }}"
+        uses: rtCamp/action-slack-notify@v2
+        with:
+          script: console.log(${{ needs.changedfile.outputs.pull_request }})
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: github-actions-test
+          SLACK_TITLE: 'マイグレーションのお知らせ :bell:'
+          SLACK_USERNAME: --data '{\"username\" ${{ needs.changedfile.outputs.pull_request }}}'
+          SLACK_MESSAGE: |
+            PR: --data '{\"username\" ${{ needs.changedfile.outputs.pull_request }}}'
+            日時: ${{ needs.changedfile.outputs.datetime }}
+            バージョン: --data '{\"milestone\" ${{ needs.changedfile.outputs.pull_request }}}'
+            変更差分: 
+            ${{ needs.changedfile.outputs.migfile }}
