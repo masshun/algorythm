@@ -61,7 +61,7 @@ jobs:
           SLACK_MESSAGE: |
             PR者: ${{ fromJson(needs.changedfile.outputs.pull_request).username }}
             日時: ${{ needs.changedfile.outputs.datetime }}
-            @channel ${{ fromJson(needs.changedfile.outputs.pull_request).version }}最新取得時、以下の適用をお願いいたします。
+            <@channel> ${{ fromJson(needs.changedfile.outputs.pull_request).version }}最新取得時、以下の適用をお願いいたします。
 
             変更差分: 
             ${{ needs.changedfile.outputs.migfile }}
