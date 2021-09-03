@@ -39,3 +39,4 @@ delete s_ssss;
 update hoge set aaaa = 1;
 
 select * hogehoge;
+update hogwhofufufuf;
