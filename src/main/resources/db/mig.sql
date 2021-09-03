@@ -45,3 +45,4 @@ select * from s_gggggg;
 
 select * hogehohgoheg;
 delete fihifhihi;
+aaaaaa;
