@@ -2,32 +2,30 @@ on:
   pull_request:
     branches:
 #       - 'master'
-      - develop/1.1.0
+      - develop/*
+      - release/*
     types: [closed]
     paths: src/main/resources/db/mig.sql
 
 jobs:
   changedfile:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
       migfile: ${{ steps.changes.outputs.migfile }}
       datetime: ${{ steps.datetime.outputs.datetime }}
       milestone: ${{ steps.milestone.outputs.result }}
     steps:
-    - name: 'echo'
-      run: echo "echo log"
-  
     - name: 'Checkout'
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
 
     - name: 'Get Changed File'
-      if: github.event.pull_request.merged == true
       id: changes
       shell: bash
       run: |
-        mydiff=$(git diff HEAD^..HEAD --diff-filter=AM src/main/resources/db/mig.sql | egrep "^\+|^\-")
+        mydiff=$(git diff HEAD^..HEAD --diff-filter=AM src/main/resources/db/mig.sql | sed -n '3,$p' | egrep "^\+|^\-")
         mydiff="${mydiff//'%'/'%25'}"
         mydiff="${mydiff//$'\n'/'%0A'}"
         mydiff="${mydiff//$'\r'/'%0D'}"
@@ -38,12 +36,14 @@ jobs:
       run: echo "::set-output name=datetime::$(date +'%Y-%m-%d %H:%M:%S')"
       env:
         TZ: 'Asia/Tokyo'
-    
+
     - name: 'Get Pull-Request Milestone'
       uses: actions/github-script@v4
       id: milestone
       with:
-        script: return context.payload.pull_request.milestone.title
+        script: |
+          console.log(context)
+          return context.payload.pull_request.milestone.title
         result-encoding: string
 
   slackNotification:
