@@ -41,3 +41,4 @@ update hoge set aaaa = 1;
 select * hogehoge;
 update hogwhofufufuf;
 select * hogehogefugafuga;
+select * from s_gggggg;
