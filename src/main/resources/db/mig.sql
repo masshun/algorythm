@@ -35,3 +35,5 @@ select * from hoge_hoge;
 alter table a_hoge;
 
 delete s_ssss;
+
+update hoge set aaaa = 1;
