@@ -1,4 +1,4 @@
-package com.example.demo.ocp.table
+package com.example.demo.refactoring.ocp.practice
 
 abstract class Shape {
 
