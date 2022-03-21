@@ -1,4 +1,4 @@
-package com.example.demo.ocp.table
+package com.example.demo.refactoring.ocp.practice
 
 class DrawingTool {
     // 動作確認のためshapeListをメンバ変数から外す

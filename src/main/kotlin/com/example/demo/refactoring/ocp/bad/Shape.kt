@@ -1,4 +1,4 @@
-package com.example.demo.ocp.bad
+package com.example.demo.refactoring.ocp.bad
 
 import java.awt.Point
 
